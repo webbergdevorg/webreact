@@ -36,7 +36,7 @@ export default function Navbar({ onOpenContactModal }) {
         </div>
       </a>
 
-      <nav className={`nav-pill ${menuOpen ? "is-active" : ""}`}>
+      <nav className={`nav-pill ${menuOpen ? "open is-active" : ""}`}>
         <ul>
           <li>
             <a
@@ -83,12 +83,26 @@ export default function Navbar({ onOpenContactModal }) {
               Contact
             </a>
           </li>
+          <li className="mobile-cta-item">
+            <a
+              href="#contact-modal"
+              className="btn btn--pill btn--mobile-nav"
+              data-open-modal="contact"
+              onClick={(e) => {
+                e.preventDefault();
+                setMenuOpen(false);
+                onOpenContactModal();
+              }}
+            >
+              Book a Call
+            </a>
+          </li>
         </ul>
       </nav>
 
       <a
         href="#contact-modal"
-        className="btn btn--pill"
+        className="btn btn--pill nav-desktop-cta"
         data-open-modal="contact"
         onClick={(e) => {
           e.preventDefault();
@@ -100,7 +114,7 @@ export default function Navbar({ onOpenContactModal }) {
 
       <button
         type="button"
-        className={`menu-toggle ${menuOpen ? "is-active" : ""}`}
+        className={`menu-toggle ${menuOpen ? "open is-open is-active" : ""}`}
         aria-label="Toggle menu"
         onClick={toggleMenu}
       >
