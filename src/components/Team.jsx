@@ -24,6 +24,15 @@ export default function Team() {
   const [isRevealed, setIsRevealed] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const [activeToast, setActiveToast] = useState(null);
+
+  const handlePortfolioClick = (e, name) => {
+    e.preventDefault();
+    setActiveToast(name);
+    setTimeout(() => {
+      setActiveToast((curr) => (curr === name ? null : curr));
+    }, 2800);
+  };
 
   const updateScrollButtons = () => {
     if (!gridRef.current) return;
@@ -114,9 +123,6 @@ export default function Team() {
           <div className="team__grid" ref={gridRef}>
             {teamData.map((member, idx) => (
               <article key={idx} className="team-card">
-                <div className="team-card__media">
-                  {/* Blank space for member image */}
-                </div>
                 <div className="team-card__content">
                   <h3 className="team-card__name">{member.name}</h3>
                   <span className="team-card__role">{member.role}</span>
@@ -128,6 +134,18 @@ export default function Team() {
                     ))}
                   </div>
                   <div className="team-card__divider"></div>
+                  <div className="team-card__footer">
+                    <button
+                      type="button"
+                      className="team-card__portfolio-link"
+                      onClick={(e) => handlePortfolioClick(e, member.name)}
+                    >
+                      Portfolio &rarr;
+                    </button>
+                    {activeToast === member.name && (
+                      <span className="team-card__coming-soon-badge">Coming Soon!</span>
+                    )}
+                  </div>
                 </div>
               </article>
             ))}
