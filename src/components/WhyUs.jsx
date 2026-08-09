@@ -71,13 +71,13 @@ export default function WhyUs() {
             </li>
             <li className="skill">
               <div className="skill__top">
-                <span className="skill__name">HTML</span>
-                <span className="skill__pct">90%</span>
+                <span className="skill__name">React</span>
+                <span className="skill__pct">80%</span>
               </div>
               <div className="skill__bar">
                 <span
                   className="skill__fill"
-                  style={{ "--pct": "90%", width: isRevealed ? "90%" : "0%" }}
+                  style={{ "--pct": "80%", width: isRevealed ? "80%" : "0%" }}
                 ></span>
               </div>
             </li>
