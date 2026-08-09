@@ -116,7 +116,7 @@ export default function Projects({ onOpenWebPreview }) {
                 </h3>
                 <span className="project-card__tag">Detail Garage</span>
                 <p className="project-card__desc">
-                  A modern customer dashboard with appointment booking and seamless transaction management.
+                  A modern car detailing platform for seamless booking and customer management.
                 </p>
                 <div className="project-card__pills">
                   <span className="pill">HTML</span>
@@ -156,7 +156,7 @@ export default function Projects({ onOpenWebPreview }) {
               <div className="project-card__content">
                 <h3 className="project-card__title" style={{ fontFamily: "sans-serif", fontWeight: 600 }}>KYNODEN</h3>
                 <span className="project-card__tag">Pet Care</span>
-                <p className="project-card__desc">Upcoming Pet service</p>
+                <p className="project-card__desc">A modern pet care platform designed to make pet services simple and accessible.</p>
                 <div className="project-card__pills">
                   <span className="pill">React.js</span>
                   <span className="pill">Supabase</span>
