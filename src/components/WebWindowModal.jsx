@@ -41,6 +41,8 @@ export default function WebWindowModal({ activeProject, onClose }) {
     onClose();
   };
 
+  const isDummyUrl = !activeProject.url || activeProject.url === "#" || activeProject.url === "about:blank";
+
   return (
     <div
       className={`web-window-modal is-active ${
@@ -84,33 +86,35 @@ export default function WebWindowModal({ activeProject, onClose }) {
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
             <span className="web-window__url-text" id="win-url-text">
-              {activeProject.url || "https://mfzdetail.in"}
+              {isDummyUrl ? "https://webberg.dev/preview/coming-soon" : activeProject.url}
             </span>
           </div>
 
           {/* Actions */}
           <div className="web-window__actions">
-            <button
-              type="button"
-              className="win-action-btn win-action-btn--launch"
-              id="win-launch-btn"
-              title="Open in New Tab"
-              onClick={handleOpenNewTab}
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+            {!isDummyUrl && (
+              <button
+                type="button"
+                className="win-action-btn win-action-btn--launch"
+                id="win-launch-btn"
+                title="Open in New Tab"
+                onClick={handleOpenNewTab}
               >
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-              <span className="btn-lbl">Open in New Tab</span>
-            </button>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                <span className="btn-lbl">Open in New Tab</span>
+              </button>
+            )}
 
             <button
               type="button"
@@ -172,12 +176,41 @@ export default function WebWindowModal({ activeProject, onClose }) {
 
         {/* Content Body */}
         <div className="web-window__body">
-          <iframe
-            id="win-iframe"
-            className="web-window__iframe"
-            src={activeProject.url || "about:blank"}
-            title="Website Live Preview"
-          ></iframe>
+          {isDummyUrl ? (
+            <div className="web-window__placeholder">
+              <div className="placeholder-card">
+                <span className="placeholder-badge">Development Stage</span>
+                <h3 className="placeholder-title">Live Preview Coming Soon</h3>
+                <p className="placeholder-desc">
+                  The live website for <strong>{activeProject.title}</strong> is currently under active development.
+                </p>
+                <button
+                  type="button"
+                  className="btn btn--submit"
+                  onClick={() => {
+                    handleClose();
+                    const contactSec = document.getElementById("contact");
+                    if (contactSec) contactSec.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
+                  Contact Webberg Team &rarr;
+                </button>
+              </div>
+            </div>
+          ) : (
+            <>
+              <iframe
+                id="win-iframe"
+                className="web-window__iframe"
+                src={activeProject.url}
+                title="Website Live Preview"
+              ></iframe>
+              <div className="web-window__iframe-fallback">
+                <span>If website content does not load inside iframe due to domain security policy:</span>
+                <button type="button" onClick={handleOpenNewTab}>Open in New Tab ↗</button>
+              </div>
+            </>
+          )}
         </div>
       </div>
 

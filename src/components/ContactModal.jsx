@@ -1,9 +1,4 @@
 import React, { useState } from "react";
-import emailjs from "@emailjs/browser";
-
-const SERVICE_ID = "service_webberg_enq";
-const PUBLIC_KEY = "RRDKOopb2A2xKgAVZ";
-const TEMPLATE_ID = "template_tmepfju";
 
 export default function ContactModal({ isOpen, onClose, onSubmitSuccess }) {
   const [formData, setFormData] = useState({
@@ -11,6 +6,7 @@ export default function ContactModal({ isOpen, onClose, onSubmitSuccess }) {
     lname: "",
     email: "",
     phone: "",
+    service: "Web Design & Development",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,37 +18,63 @@ export default function ContactModal({ isOpen, onClose, onSubmitSuccess }) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const validateForm = () => {
+    const fname = formData.fname.trim();
+    const email = formData.email.trim();
+    const phone = formData.phone.trim();
+
+    if (!fname) {
+      alert("Please enter your First Name.");
+      return false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      alert("Please enter a valid email address (e.g. name@domain.com).");
+      return false;
+    }
+
+    const digitsOnly = phone.replace(/\D/g, "");
+    if (!phone || digitsOnly.length < 7) {
+      alert("Please enter a valid phone number (at least 7 digits).");
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.fname || !formData.email || !formData.phone) {
-      alert("Please fill in all required fields (*)");
-      return;
-    }
+    if (!validateForm()) return;
 
     setIsSubmitting(true);
 
-    const fullName = `${formData.fname} ${formData.lname}`.trim();
-    const templateParams = {
-      name: fullName,
-      from_name: fullName,
-      fname: formData.fname,
-      lname: formData.lname,
-      email: formData.email,
-      from_email: formData.email,
-      user_email: formData.email,
-      reply_to: formData.email,
-      phone: formData.phone,
-      user_phone: formData.phone,
-      message: formData.message || "No message provided",
-      enquiry_message: formData.message || "No message provided",
-    };
+    const fnameClean = formData.fname.trim();
+    const lnameClean = formData.lname.trim();
+    const emailClean = formData.email.trim();
+    const phoneClean = formData.phone.trim();
+    const messageClean = formData.message.trim();
+    const serviceSelected = formData.service || "Web Design & Development";
+    const fullName = `${fnameClean} ${lnameClean}`.trim();
 
     try {
-      console.log("Sending email via EmailJS (Modal)...", { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY });
-      const res = await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
-      console.log("EmailJS Modal Success Response:", res);
+      await fetch("https://formsubmit.co/ajax/867bb503f01332a512c17eb2e9ff34a9", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: fullName,
+          email: emailClean,
+          phone: phoneClean,
+          "Service Required": serviceSelected,
+          message: messageClean || "No message provided",
+          _subject: `New Webberg Enquiry (${serviceSelected}) from ${fullName}`,
+        }),
+      });
     } catch (err) {
-      console.error("EmailJS Modal Error details:", err);
+      console.warn("FormSubmit delivery warning:", err);
     } finally {
       setIsSubmitting(false);
     }
@@ -60,7 +82,7 @@ export default function ContactModal({ isOpen, onClose, onSubmitSuccess }) {
     onClose();
     if (onSubmitSuccess) {
       onSubmitSuccess(
-        "Thank you! Your enquiry details have been submitted."
+        "Thank you! We have received your enquiry and will get back to you shortly."
       );
     }
 
@@ -69,6 +91,7 @@ export default function ContactModal({ isOpen, onClose, onSubmitSuccess }) {
       lname: "",
       email: "",
       phone: "",
+      service: "Web Design & Development",
       message: "",
     });
   };
@@ -194,6 +217,26 @@ export default function ContactModal({ isOpen, onClose, onSubmitSuccess }) {
                   onChange={handleChange}
                 />
               </div>
+            </div>
+
+            <div className="field" style={{ marginBottom: "16px" }}>
+              <label htmlFor="modal-service">
+                Service Required <span className="req-asterisk">*</span>
+              </label>
+              <select
+                id="modal-service"
+                name="service"
+                className="select-input"
+                value={formData.service || "Web Design & Development"}
+                onChange={handleChange}
+              >
+                <option value="Web Design & Development">Web Design & Development</option>
+                <option value="UI/UX Design">UI/UX Design</option>
+                <option value="SEO Services">SEO Services</option>
+                <option value="Social Media Management">Social Media Management</option>
+                <option value="Branding & Logo Design">Branding & Logo Design</option>
+                <option value="Full Digital Solution">Full Digital Solution / Custom Project</option>
+              </select>
             </div>
 
             <div className="field">

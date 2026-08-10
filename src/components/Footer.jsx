@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Footer({ onTriggerSocialDropdown }) {
+export default function Footer({ onTriggerSocialDropdown, onOpenPolicyModal }) {
   return (
     <footer className="footer">
       <div className="footer__inner">
@@ -86,10 +86,28 @@ export default function Footer({ onTriggerSocialDropdown }) {
 
       <div className="footer__bottom">
         <div className="footer__divider"></div>
-        <p>
-          © 2026 Copyright by Webberg.{" "}
-          <span className="footer__copy-accent">All rights reserved.</span>
-        </p>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px", width: "100%" }}>
+          <p>
+            © 2026 Copyright by Webberg.{" "}
+            <span className="footer__copy-accent">All rights reserved.</span>
+          </p>
+          <div style={{ display: "flex", gap: "16px", fontSize: "0.85rem" }}>
+            <button
+              type="button"
+              style={{ background: "none", border: "none", color: "#94a3b8", cursor: "pointer", textDecoration: "underline", padding: 0 }}
+              onClick={() => onOpenPolicyModal && onOpenPolicyModal("privacy")}
+            >
+              Privacy Policy
+            </button>
+            <button
+              type="button"
+              style={{ background: "none", border: "none", color: "#94a3b8", cursor: "pointer", textDecoration: "underline", padding: 0 }}
+              onClick={() => onOpenPolicyModal && onOpenPolicyModal("terms")}
+            >
+              Terms & Conditions
+            </button>
+          </div>
+        </div>
       </div>
     </footer>
   );

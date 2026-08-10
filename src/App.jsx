@@ -14,6 +14,8 @@ import ContactModal from "./components/ContactModal";
 import WebWindowModal from "./components/WebWindowModal";
 import SocialDropdown from "./components/SocialDropdown";
 import SuccessModal from "./components/SuccessModal";
+import MobileQuickBar from "./components/MobileQuickBar";
+import PolicyModal from "./components/PolicyModal";
 
 export default function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -22,6 +24,10 @@ export default function App() {
   const [successModalData, setSuccessModalData] = useState({
     isOpen: false,
     message: "",
+  });
+  const [policyModalData, setPolicyModalData] = useState({
+    isOpen: false,
+    type: "privacy",
   });
 
   const handleOpenContactModal = () => {
@@ -64,6 +70,20 @@ export default function App() {
     setSuccessModalData({
       isOpen: false,
       message: "",
+    });
+  };
+
+  const handleOpenPolicyModal = (type) => {
+    setPolicyModalData({
+      isOpen: true,
+      type: type,
+    });
+  };
+
+  const handleClosePolicyModal = () => {
+    setPolicyModalData({
+      isOpen: false,
+      type: "privacy",
     });
   };
 
@@ -111,7 +131,10 @@ export default function App() {
       <Faq />
 
       {/* ===== FOOTER ===== */}
-      <Footer onTriggerSocialDropdown={handleTriggerSocialDropdown} />
+      <Footer
+        onTriggerSocialDropdown={handleTriggerSocialDropdown}
+        onOpenPolicyModal={handleOpenPolicyModal}
+      />
 
       {/* ===== CONTACT MODAL ===== */}
       <ContactModal
@@ -138,6 +161,16 @@ export default function App() {
         message={successModalData.message}
         onClose={handleCloseSuccessModal}
       />
+
+      {/* ===== PRIVACY POLICY & TERMS MODAL ===== */}
+      <PolicyModal
+        isOpen={policyModalData.isOpen}
+        type={policyModalData.type}
+        onClose={handleClosePolicyModal}
+      />
+
+      {/* ===== MOBILE STICKY FLOATING QUICK BAR ===== */}
+      <MobileQuickBar onOpenContactModal={handleOpenContactModal} />
     </div>
   );
 }
