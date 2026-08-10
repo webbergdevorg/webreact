@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
+
+const SERVICE_ID = "service_webberg_enq";
+const PUBLIC_KEY = "RRDKOopb2A2xKgAVZ";
+const TEMPLATE_ID = "template_tmepfju";
 
 export default function ContactModal({ isOpen, onClose, onSubmitSuccess }) {
   const [formData, setFormData] = useState({
@@ -8,6 +13,7 @@ export default function ContactModal({ isOpen, onClose, onSubmitSuccess }) {
     phone: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isOpen) return null;
 
@@ -16,19 +22,55 @@ export default function ContactModal({ isOpen, onClose, onSubmitSuccess }) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.fname || !formData.email || !formData.phone) {
       alert("Please fill in all required fields (*)");
       return;
     }
 
+    setIsSubmitting(true);
+
+    const fullName = `${formData.fname} ${formData.lname}`.trim();
+    const templateParams = {
+      name: fullName,
+      from_name: fullName,
+      fname: formData.fname,
+      lname: formData.lname,
+      email: formData.email,
+      from_email: formData.email,
+      user_email: formData.email,
+      reply_to: formData.email,
+      phone: formData.phone,
+      user_phone: formData.phone,
+      message: formData.message || "No message provided",
+      enquiry_message: formData.message || "No message provided",
+    };
+
+    try {
+      console.log("Sending email via EmailJS (Modal)...", { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY });
+      const res = await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+      console.log("EmailJS Modal Success Response:", res);
+    } catch (err) {
+      console.error("EmailJS Modal Error details:", err);
+    } finally {
+      setIsSubmitting(false);
+    }
+
     onClose();
     if (onSubmitSuccess) {
       onSubmitSuccess(
-        "Thank you! We have received your details and will get back to you shortly."
+        "Thank you! Your enquiry details have been submitted."
       );
     }
+
+    setFormData({
+      fname: "",
+      lname: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
   };
 
   return (
@@ -166,8 +208,8 @@ export default function ContactModal({ isOpen, onClose, onSubmitSuccess }) {
               ></textarea>
             </div>
 
-            <button type="submit" className="btn btn--submit">
-              Submit Form
+            <button type="submit" className="btn btn--submit" disabled={isSubmitting}>
+              {isSubmitting ? "Sending Enquiry..." : "Submit Form"}
             </button>
           </form>
         </div>

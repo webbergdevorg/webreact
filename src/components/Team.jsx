@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 
 const teamData = [
   {
-    name: "Aadhi Sivam",
-    role: "Backend Developer",
-    pills: ["Node.js", "Supabase", "Architecture", "Finance"],
+    name: "Ameer Amsha",
+    role: "Full Stack Developer",
+    pills: ["Leadership", "Tailwind CSS", "Express.js", "React Native"],
   },
   {
     name: "Tharun",
@@ -12,9 +12,9 @@ const teamData = [
     pills: ["Figma", "Management", "Animations", "React"],
   },
   {
-    name: "Ameer Amsha",
-    role: "Full Stack Developer",
-    pills: ["Leadership", "Tailwind CSS", "Express.js", "React Native"],
+    name: "Aadhi Sivam",
+    role: "Backend Developer",
+    pills: ["Node.js", "Supabase", "Architecture", "Finance"],
   },
 ];
 
