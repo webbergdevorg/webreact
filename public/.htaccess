@@ -1,0 +1,36 @@
+# Webberg Apache Configuration for Vite / React SPA Static Hosting
+
+# 0. Disable Directory Browsing (Prevents listing folder contents)
+Options -Indexes
+
+# 1. Correct MIME Types for JS modules, CSS, and images
+<IfModule mod_mime.c>
+  AddType application/javascript js mjs
+  AddType text/css css
+  AddType image/svg+xml svg
+  AddType image/png png
+  AddType image/webp webp
+  AddType font/woff2 woff2
+</IfModule>
+
+# 2. Enable CORS and Module Headers
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|mjs|css|svg|woff2)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+
+# 3. SPA Route Rewrite Rule (Fallback to index.html)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# 4. Gzip / Brotli Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE application/javascript text/css text/html image/svg+xml
+</IfModule>

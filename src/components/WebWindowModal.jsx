@@ -118,9 +118,10 @@ export default function WebWindowModal({ activeProject, onClose }) {
 
             <button
               type="button"
-              className="win-action-btn"
+              className="win-action-btn win-action-btn--min"
               id="win-minimize-btn"
               title="Minimize"
+              aria-label="Minimize preview"
               onClick={handleMinimize}
             >
               <svg
@@ -136,9 +137,10 @@ export default function WebWindowModal({ activeProject, onClose }) {
 
             <button
               type="button"
-              className="win-action-btn"
+              className="win-action-btn win-action-btn--max"
               id="win-maximize-btn"
               title="Maximize / Restore"
+              aria-label="Maximize preview"
               onClick={handleToggleMaximize}
             >
               <svg
@@ -156,7 +158,9 @@ export default function WebWindowModal({ activeProject, onClose }) {
             <button
               type="button"
               className="win-action-btn win-action-btn--close"
-              title="Close"
+              id="win-close-btn"
+              title="Close Preview Window"
+              aria-label="Close modal"
               onClick={handleClose}
             >
               <svg
@@ -170,6 +174,7 @@ export default function WebWindowModal({ activeProject, onClose }) {
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
+              <span className="close-lbl">Close</span>
             </button>
           </div>
         </div>
@@ -179,22 +184,50 @@ export default function WebWindowModal({ activeProject, onClose }) {
           {isDummyUrl ? (
             <div className="web-window__placeholder">
               <div className="placeholder-card">
+                <button
+                  type="button"
+                  className="placeholder-card__close-btn"
+                  aria-label="Close preview modal"
+                  title="Close"
+                  onClick={handleClose}
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
                 <span className="placeholder-badge">Development Stage</span>
                 <h3 className="placeholder-title">Live Preview Coming Soon</h3>
                 <p className="placeholder-desc">
                   The live website for <strong>{activeProject.title}</strong> is currently under active development.
                 </p>
-                <button
-                  type="button"
-                  className="btn btn--submit"
-                  onClick={() => {
-                    handleClose();
-                    const contactSec = document.getElementById("contact");
-                    if (contactSec) contactSec.scrollIntoView({ behavior: "smooth" });
-                  }}
-                >
-                  Contact Webberg Team &rarr;
-                </button>
+                <div className="placeholder-actions">
+                  <button
+                    type="button"
+                    className="btn btn--submit"
+                    onClick={() => {
+                      handleClose();
+                      const contactSec = document.getElementById("contact");
+                      if (contactSec) contactSec.scrollIntoView({ behavior: "smooth" });
+                    }}
+                  >
+                    Contact Webberg Team &rarr;
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn--close-modal-mobile"
+                    onClick={handleClose}
+                  >
+                    Close Preview
+                  </button>
+                </div>
               </div>
             </div>
           ) : (
@@ -207,7 +240,10 @@ export default function WebWindowModal({ activeProject, onClose }) {
               ></iframe>
               <div className="web-window__iframe-fallback">
                 <span>If website content does not load inside iframe due to domain security policy:</span>
-                <button type="button" onClick={handleOpenNewTab}>Open in New Tab ↗</button>
+                <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+                  <button type="button" onClick={handleOpenNewTab}>Open in New Tab ↗</button>
+                  <button type="button" className="fallback-close-btn" onClick={handleClose}>Close ✕</button>
+                </div>
               </div>
             </>
           )}

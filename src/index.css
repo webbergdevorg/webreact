@@ -3013,6 +3013,7 @@ body.modal-open {
 /* Address Bar */
 .web-window__url-bar {
   flex: 1;
+  min-width: 0; /* Allows address bar to shrink on mobile without pushing action buttons off-screen */
   max-width: 440px;
   height: 28px;
   background: #0f1014;
@@ -3022,6 +3023,7 @@ body.modal-open {
   align-items: center;
   padding: 0 10px;
   gap: 8px;
+  overflow: hidden;
 }
 
 .web-window__url-bar .lock-icon {
@@ -3038,6 +3040,7 @@ body.modal-open {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
 }
 
 /* Action Control Buttons */
@@ -3045,6 +3048,8 @@ body.modal-open {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-shrink: 0; /* Ensure control buttons are NEVER pushed off screen */
+  z-index: 10;
 }
 
 .win-action-btn {
@@ -3062,6 +3067,7 @@ body.modal-open {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .win-action-btn:hover {
@@ -3085,6 +3091,14 @@ body.modal-open {
   background: var(--blue);
   color: #fff;
   border-color: var(--blue);
+}
+
+.win-action-btn--close {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #f87171;
+  padding: 5px 12px;
+  font-weight: 700;
 }
 
 .win-action-btn--close:hover {
@@ -3119,17 +3133,50 @@ body.modal-open {
   height: 100%;
   padding: 24px;
   background: radial-gradient(circle at center, rgba(59, 130, 246, 0.08) 0%, rgba(9, 10, 13, 0.95) 100%);
+  position: relative;
 }
 
 .placeholder-card {
+  position: relative;
   max-width: 480px;
+  width: 100%;
   text-align: center;
   background: rgba(18, 24, 38, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 16px;
-  padding: 32px 24px;
+  padding: 36px 24px 30px;
   backdrop-filter: blur(12px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.placeholder-card__close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  color: #f87171;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.placeholder-card__close-btn:hover {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+  transform: scale(1.08);
+}
+
+.placeholder-card__close-btn svg {
+  width: 16px;
+  height: 16px;
 }
 
 .placeholder-badge {
@@ -3164,6 +3211,33 @@ body.modal-open {
   color: #3b82f6;
 }
 
+.placeholder-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.btn--close-modal-mobile {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.btn--close-modal-mobile:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #ff6b6b;
+}
+
 .web-window__iframe-fallback {
   display: flex;
   align-items: center;
@@ -3192,10 +3266,36 @@ body.modal-open {
   background: #2563eb;
 }
 
+.fallback-close-btn {
+  background: rgba(239, 68, 68, 0.2) !important;
+  border: 1px solid rgba(239, 68, 68, 0.4) !important;
+  color: #f87171 !important;
+}
+
+.fallback-close-btn:hover {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+}
+
 @media (max-width: 640px) {
+  .web-window-modal {
+    padding: 12px 8px;
+  }
+
   .web-window {
     width: 98vw;
-    height: 90vh;
+    height: 92vh;
+    border-radius: 14px;
+  }
+
+  .web-window__header {
+    height: 48px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .web-window__branding {
+    display: none;
   }
 
   .web-window__title,
@@ -3203,8 +3303,29 @@ body.modal-open {
     display: none;
   }
 
+  .win-action-btn--min,
+  .win-action-btn--max {
+    display: none !important; /* Hide minimize/maximize desktop window options on mobile */
+  }
+
   .win-action-btn--launch {
-    padding: 5px;
+    padding: 5px 8px;
+  }
+
+  .win-action-btn--close {
+    padding: 6px 14px !important;
+    font-size: 0.85rem !important;
+    min-height: 36px !important;
+    background: #ef4444 !important;
+    border-color: #ef4444 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.45);
+    border-radius: 8px !important;
+  }
+
+  .win-action-btn--close .close-lbl {
+    display: inline-block !important;
+    font-weight: 700;
   }
 }
 
