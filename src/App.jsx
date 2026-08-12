@@ -16,6 +16,7 @@ import SocialDropdown from "./components/SocialDropdown";
 import SuccessModal from "./components/SuccessModal";
 import MobileQuickBar from "./components/MobileQuickBar";
 import PolicyModal from "./components/PolicyModal";
+import SEO from "./components/SEO";
 
 export default function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -89,6 +90,7 @@ export default function App() {
 
   return (
     <div className="app-root">
+      <SEO />
       {/* Blurred layered background (hero) */}
       <div className="bg-layers" aria-hidden="true">
         <span className="hero-glow"></span>

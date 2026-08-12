@@ -174,7 +174,7 @@ export default function Services() {
                 {svc.image ? (
                   <img
                     src={svc.image}
-                    alt={svc.heading}
+                    alt={`Webberg ${svc.heading} Service in Chennai`}
                     className="service-card__icon-img"
                     onError={(e) => {
                       e.target.style.display = "none";

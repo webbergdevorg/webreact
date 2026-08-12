@@ -2,7 +2,7 @@
  * Webberg Web - Senior Backend Developer Enquiry Microservice
  * 
  * Features:
- * 1. Sends HTML & plain-text email notifications to webbergdevelopment@gmail.com (via Nodemailer / SMTP)
+ * 1. Sends HTML & plain-text email notifications to support@webberg.in (via Nodemailer / SMTP)
  * 2. Sends real-time SMS notifications to target phone (+91 78100 59511) via Twilio API
  * 
  * Setup instructions:
@@ -10,7 +10,7 @@
  * 2. Configure .env file with your credentials:
  *    SMTP_HOST=smtp.gmail.com
  *    SMTP_PORT=587
- *    SMTP_USER=webbergdevelopment@gmail.com
+ *    SMTP_USER=support@webberg.in
  *    SMTP_PASS=your_app_password
  *    TWILIO_ACCOUNT_SID=your_twilio_sid
  *    TWILIO_AUTH_TOKEN=your_twilio_token
@@ -32,7 +32,7 @@ app.use(cors());
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
-const OWNER_EMAIL = process.env.SMTP_USER || 'webbergdevelopment@gmail.com';
+const OWNER_EMAIL = process.env.SMTP_USER || 'support@webberg.in';
 const OWNER_PHONE = process.env.OWNER_PHONE_NUMBER || '+917810059511';
 
 // Nodemailer Transporter Config

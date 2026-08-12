@@ -50,7 +50,7 @@ export default function PolicyModal({ isOpen, type, onClose }) {
                 <p>We apply industry-standard security controls to protect your data against unauthorized access, disclosure, or alteration.</p>
 
                 <h4 style={{ color: "#60a5fa", marginTop: "16px", marginBottom: "6px" }}>4. Contact Us</h4>
-                <p>For data removal or privacy inquiries, email us at <strong>webbergdevelopment@gmail.com</strong> or call <strong>+91 78100 59511</strong> (Tambaram, Chennai - 600058).</p>
+                <p>For data removal or privacy inquiries, email us at <strong>support@webberg.in</strong> or call <strong>+91 78100 59511</strong> (Tambaram, Chennai - 600058).</p>
               </>
             ) : (
               <>

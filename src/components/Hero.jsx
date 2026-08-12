@@ -116,7 +116,7 @@ export default function Hero({ onOpenContactModal, onTriggerSocialDropdown }) {
 
         <article className={`step-card step-card--1 ${revealedCards[0] ? "reveal" : ""}`} data-step="1">
           <div className="step-card__media">
-            <img src="/asset/design.png" alt="Design" />
+            <img src="/asset/design.png" alt="Webberg UI UX Design Stage" />
           </div>
           <div className="step-card__overlay">
             <span className="step-card__label">01 DESIGN</span>
@@ -126,7 +126,7 @@ export default function Hero({ onOpenContactModal, onTriggerSocialDropdown }) {
 
         <article className={`step-card step-card--2 ${revealedCards[1] ? "reveal" : ""}`} data-step="2">
           <div className="step-card__media">
-            <img src="/asset/develop.png" alt="Develop" />
+            <img src="/asset/develop.png" alt="Webberg Web Development Stage" />
           </div>
           <div className="step-card__overlay">
             <span className="step-card__label">02 DEVELOP</span>
@@ -136,7 +136,7 @@ export default function Hero({ onOpenContactModal, onTriggerSocialDropdown }) {
 
         <article className={`step-card step-card--3 ${revealedCards[3] || revealedCards[2] ? "reveal" : ""}`} data-step="3">
           <div className="step-card__media">
-            <img src="/asset/deliver.png" alt="Deliver" />
+            <img src="/asset/deliver.png" alt="Webberg Project Delivery Stage" />
           </div>
           <div className="step-card__overlay">
             <span className="step-card__label">03 DELIVER</span>

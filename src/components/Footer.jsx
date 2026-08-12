@@ -74,7 +74,7 @@ export default function Footer({ onTriggerSocialDropdown, onOpenPolicyModal }) {
               </div>
             </div>
             <p>+91 78100 59511</p>
-            <p>webbergdevelopment@gmail.com</p>
+            <p>support@webberg.in</p>
           </div>
         </div>
 

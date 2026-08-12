@@ -57,7 +57,7 @@ export default function ContactSection({ onFormSubmitSuccess, onTriggerSocialDro
     const fullName = `${fnameClean} ${lnameClean}`.trim();
 
     try {
-      await fetch("https://formsubmit.co/ajax/867bb503f01332a512c17eb2e9ff34a9", {
+      await fetch("https://formsubmit.co/ajax/support@webberg.in", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +107,7 @@ export default function ContactSection({ onFormSubmitSuccess, onTriggerSocialDro
 
         <div className="contact__info">
           <a
-            href="mailto:webbergdevelopment@gmail.com"
+            href="mailto:support@webberg.in"
             className="info-card info-card--link"
             title="Send email to Webberg"
           >
@@ -118,7 +118,7 @@ export default function ContactSection({ onFormSubmitSuccess, onTriggerSocialDro
               </svg>
               <span>E-mail</span>
             </div>
-            <div className="info-card__val">webbergdevelopment@gmail.com</div>
+            <div className="info-card__val">support@webberg.in</div>
           </a>
 
           <a

@@ -103,7 +103,7 @@ export default function Projects({ onOpenWebPreview }) {
             {/* Project Card 1 */}
             <article className="project-card">
               <div className="project-card__media">
-                <img src="/asset/projects/motof.png" alt="MOTOFOCUZ" />
+                <img src="/asset/projects/motof.png" alt="MOTOFOCUZ Detail Garage Website Project by Webberg" />
               </div>
               <div className="project-card__content">
                 <h3
@@ -126,16 +126,16 @@ export default function Projects({ onOpenWebPreview }) {
                 </div>
                 <div className="project-card__footer">
                   <a
-                    href="https://mfzdetail.in"
+                    href="#"
                     className="project-card__link"
                     data-project-id="motofocuz"
                     data-project-title="MOTO FOCUZ — Detail Garage"
-                    data-project-url="https://mfzdetail.in"
+                    data-project-url="#"
                     onClick={(e) =>
                       handleLinkClick(e, {
                         id: "motofocuz",
                         title: "MOTO FOCUZ — Detail Garage",
-                        url: "https://mfzdetail.in",
+                        url: "#",
                       })
                     }
                   >
@@ -151,7 +151,7 @@ export default function Projects({ onOpenWebPreview }) {
             {/* Project Card 2 */}
             <article className="project-card">
               <div className="project-card__media">
-                <img src="/asset/projects/kynod.png" alt="KYNODEN" />
+                <img src="/asset/projects/kynod.png" alt="KYNODEN Pet Care Platform Website Project by Webberg" />
               </div>
               <div className="project-card__content">
                 <h3 className="project-card__title" style={{ fontFamily: "sans-serif", fontWeight: 600 }}>KYNODEN</h3>
