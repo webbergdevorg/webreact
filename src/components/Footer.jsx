@@ -45,9 +45,10 @@ export default function Footer({ onTriggerSocialDropdown, onOpenPolicyModal }) {
                   </svg>
                 </a>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/company/webberg"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  onClick={(e) => onTriggerSocialDropdown(e, "LinkedIn")}
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M6.94 5a2 2 0 1 1-4-.02 2 2 0 0 1 4 .02M7 8.48H3V21h4zM13.32 8.48H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z" />

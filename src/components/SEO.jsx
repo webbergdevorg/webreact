@@ -66,7 +66,8 @@ export default function SEO({
         "email": "support@webberg.in",
         "telephone": "+91 78100 59511",
         "sameAs": [
-          "https://www.instagram.com/webbergdevelopment/"
+          "https://www.instagram.com/webbergdevelopment/",
+          "https://www.linkedin.com/company/webberg"
         ],
         "areaServed": [
           { "@type": "AdministrativeArea", "name": "Chennai" },
@@ -83,6 +84,10 @@ export default function SEO({
         "image": ogImage,
         "telephone": "+91 78100 59511",
         "email": "support@webberg.in",
+        "sameAs": [
+          "https://www.instagram.com/webbergdevelopment/",
+          "https://www.linkedin.com/company/webberg"
+        ],
         "priceRange": "₹₹–₹₹₹",
         "areaServed": ["Chennai", "Bengaluru", "India"],
         "hasOfferCatalog": {

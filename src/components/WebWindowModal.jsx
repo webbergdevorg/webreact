@@ -86,7 +86,7 @@ export default function WebWindowModal({ activeProject, onClose }) {
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
             <span className="web-window__url-text" id="win-url-text">
-              {isDummyUrl ? "https://webberg.dev/preview/coming-soon" : activeProject.url}
+              {isDummyUrl ? "https://webberg.in/preview/coming-soon" : activeProject.url}
             </span>
           </div>
 

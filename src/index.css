@@ -136,7 +136,7 @@ ul {
 }
 
 .brand__logo {
-  height: 59px;
+  height: 70px;
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -145,7 +145,7 @@ ul {
 .brand__logo img {
   height: 100%;
   width: auto;
-  max-width: 220px;
+  max-width: 242px;
   object-fit: contain;
   display: block;
 }
@@ -292,6 +292,10 @@ ul {
   animation: rise 0.8s ease both;
 }
 
+.hero__title-dot {
+  color: var(--blue);
+}
+
 .hero__desc {
   font-family: "Nunito Sans", sans-serif;
   color: var(--muted);
@@ -360,7 +364,7 @@ ul {
 /* ============ HERO STEP CARDS ============ */
 .hero__right {
   position: relative;
-  min-height: 540px;
+  min-height: 620px;
 }
 
 .connector {
@@ -373,20 +377,20 @@ ul {
   overflow: visible;
 }
 
-/* snake line: gradient stroke, weight 15, 27% visible */
+/* snake line: gradient stroke, weight 17, 27% visible */
 .connector__path {
   fill: none;
   stroke: url(#snake);
-  stroke-width: 15;
+  stroke-width: 17;
   stroke-linecap: round;
   opacity: 0.27;
 }
 
 .step-card {
   position: absolute;
-  width: 210px;
-  height: 150px;
-  border-radius: 22px;
+  width: 242px;
+  height: 173px;
+  border-radius: 25px;
   border: 2px solid var(--blue);
   overflow: hidden;
   z-index: 2;
@@ -401,17 +405,17 @@ ul {
 
 .step-card--1 {
   top: 20px;
-  right: 40px;
+  right: 46px;
 }
 
 .step-card--2 {
-  top: 195px;
+  top: 224px;
   right: 0;
 }
 
 .step-card--3 {
-  top: 370px;
-  right: 60px;
+  top: 425px;
+  right: 69px;
 }
 
 .step-card__media {
@@ -430,7 +434,7 @@ ul {
 .step-card__overlay {
   position: absolute;
   inset: 0;
-  padding: 16px 18px;
+  padding: 18px 22px;
   background: linear-gradient(180deg, rgba(4, 6, 15, 0.15) 0%, rgba(4, 6, 15, 0.6) 100%);
   display: flex;
   flex-direction: column;
@@ -440,7 +444,7 @@ ul {
 .step-card__label {
   font-family: "Inter", sans-serif;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   color: var(--blue);
   letter-spacing: 0.5px;
   margin-bottom: 8px;
@@ -449,10 +453,10 @@ ul {
 .step-card__text {
   font-family: "Inter", sans-serif;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   line-height: 1.35;
   color: var(--text);
-  max-width: 150px;
+  max-width: 175px;
 }
 
 @keyframes cardIn {

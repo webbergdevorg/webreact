@@ -38,12 +38,13 @@ export default function Hero({ onOpenContactModal, onTriggerSocialDropdown }) {
     <main className="hero">
       <section className="hero__left">
         <h1 className="hero__title">
-          Build Your<br />
-          Digital Solution
+          Build Digital<br />
+          Experiences<br />
+          That Matter<span className="hero__title-dot">.</span>
         </h1>
         <p className="hero__desc">
           At Webberg, we turn ideas into powerful digital experiences. We design,
-          build, and optimize websites that perform across all.
+          build, and optimize websites that perform across all devices.
         </p>
 
         <a
@@ -70,10 +71,11 @@ export default function Hero({ onOpenContactModal, onTriggerSocialDropdown }) {
             </svg>
           </a>
           <a
-            href="#"
+            href="https://www.linkedin.com/company/webberg"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="LinkedIn"
             className="social"
-            onClick={(e) => onTriggerSocialDropdown(e, "LinkedIn")}
           >
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M6.94 5a2 2 0 1 1-4-.02 2 2 0 0 1 4 .02M7 8.48H3V21h4zM13.32 8.48H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z" />
@@ -104,14 +106,14 @@ export default function Hero({ onOpenContactModal, onTriggerSocialDropdown }) {
 
       {/* Right side: three connected step cards */}
       <section className="hero__right" ref={heroRightRef}>
-        <svg className="connector" viewBox="0 0 360 520" preserveAspectRatio="none" aria-hidden="true">
+        <svg className="connector" viewBox="0 0 360 600" preserveAspectRatio="none" aria-hidden="true">
           <defs>
             <linearGradient id="snake" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#5454d4" stopOpacity="1" />
               <stop offset="100%" stopColor="#5454d4" stopOpacity="0.42" />
             </linearGradient>
           </defs>
-          <path className="connector__path" d="M255 90 C 330 130, 330 210, 250 255 C 170 300, 170 385, 250 430" />
+          <path className="connector__path" d="M255 100 C 340 150, 340 250, 250 300 C 160 350, 160 450, 250 500" />
         </svg>
 
         <article className={`step-card step-card--1 ${revealedCards[0] ? "reveal" : ""}`} data-step="1">
