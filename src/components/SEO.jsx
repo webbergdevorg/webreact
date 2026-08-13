@@ -59,10 +59,24 @@ export default function SEO({
     const schemaData = [
       {
         "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Webberg",
+        "url": "https://webberg.in/",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Webberg",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://webberg.in/favicon-512x512.png"
+          }
+        }
+      },
+      {
+        "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Webberg",
         "url": "https://webberg.in",
-        "logo": "https://webberg.in/asset/logo.png",
+        "logo": "https://webberg.in/favicon-512x512.png",
         "email": "support@webberg.in",
         "telephone": "+91 78100 59511",
         "sameAs": [
